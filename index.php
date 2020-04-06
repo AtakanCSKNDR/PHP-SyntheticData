@@ -26,14 +26,21 @@ if (isset($_POST['verisayisi'])) {
 		$yrange = $_POST['yrange'.$i];
 		$features[$i] = [$name , $xrange , $yrange ];
 	}
-	for ($i=1; $i <= $verisayisi ; $i++) { 
-		for ($j=0; $j <= $count ; $j++) { 
-			$mean[$j] = 0;
-			$standartdeviaton[$j] = 0;
+	
+
+	for ($i=0; $i <= $count ; $i++) { 
+		for ($j=1; $j <= $verisayisi ; $j++) {
+			$mean[$i] = 0;
+			$standartdeviaton[$i] = 0;
 			$rand = rand(1,10)/10;
-			$data[$i][$j] = rand($features[$j][1],$features[$j][2]) * $rand * $korelasyonkatsayisi;
+			if ($j == 1) {
+			 	$data[$j][$i] = rand($features[$i][1],$features[$i][2]) * $rand * $korelasyonkatsayisi;
+			 }else{
+			 	$data[$j][$i] = $data[$j-1][$i] * $rand * $korelasyonkatsayisi;
+			 } 
 		}
 	}
+
 	///Array to Mean Value
 	for ($i=0; $i <= $count ; $i++) { 
 		for ($j=1; $j <= $verisayisi ; $j++) { 
@@ -41,6 +48,8 @@ if (isset($_POST['verisayisi'])) {
 		}
 		$mean[$i] = $mean[$i] / $verisayisi;
 	}
+
+
 
 	///Array to Standart Deviation
 	for ($i=0; $i <= $count ; $i++) { 
