@@ -34,7 +34,7 @@ if (isset($_POST['verisayisi'])) {
 			$standartdeviaton[$i] = 0;
 			$rand = rand(1,10)/10;
 			if ($j == 1) {
-			 	$data[$j][$i] = rand($features[$i][1],$features[$i][2]) * $rand * $korelasyonkatsayisi;
+			 	$data[$j][$i] = rand($features[$i][1],$features[$i][2]);
 			 }else{
 			 	$data[$j][$i] = $data[$j-1][$i] * $rand * $korelasyonkatsayisi;
 			 } 
